@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}Skylar Gutman — Embedded Systems & Robotics{% endblock %}
+
+{% block hero %}
+
+<!-- Hero Image -->
+<div class="flex justify-center py-8">
+    <img src="/static/images/home-page-caricature.png" alt="Skylar Gutman" class="w-full max-w-[600px] rounded-xl shadow-2xl">
+</div>
+
+<!-- Intro Section -->
+<div class="max-w-5xl mx-auto px-6 py-16">
+    <h1 class="text-5xl font-bold text-white mb-4">Skylar Gutman</h1>
+    <p class="text-xl text-cyan-400 mb-6 font-mono">Embedded Systems & Robotics Engineer</p>
+    <p class="text-gray-300 max-w-2xl leading-relaxed mb-8">
+        Computer Engineering graduate building at the intersection of hardware and software.
+        I work with ROS2, ESP32, FPGAs, and Linux-based embedded systems.
+        FAA Part 107 certified.
+    </p>
+    <div class="flex gap-4">
+        <a href="/projects/" class="bg-cyan-500 hover:bg-cyan-400 text-black font-semibold px-6 py-3 rounded transition">View Projects</a>
+        <a href="/about/" class="border border-gray-400 hover:border-white text-gray-200 hover:text-white px-6 py-3 rounded transition">About Me</a>
+    </div>
+</div>
+
+<!-- Featured Projects -->
+{% if featured %}
+<div class="max-w-5xl mx-auto px-6 pb-16">
+    <h2 class="text-xl font-semibold text-white mb-6">Featured Projects</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% for project in featured %}
+        <a href="/projects/{{ project.slug }}/" class="block border border-gray-800 rounded-lg p-6 hover:border-gray-600 transition">
+            <h3 class="text-white font-semibold mb-2">{{ project.title }}</h3>
+            <p class="text-gray-400 text-sm mb-4">{{ project.short_description }}</p>
+            <div class="flex flex-wrap gap-2">
+                {% for tech in project.tech_list %}
+                <span class="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">{{ tech }}</span>
+                {% endfor %}
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}{% endblock %}

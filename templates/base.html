@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Skylar Gutman{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="text-gray-100 min-h-screen flex flex-col" style="background-image: url('/static/images/background.png'); background-size: cover; background-attachment: fixed; background-position: center;">
+
+    <!-- Nav -->
+    <nav class="border-b border-gray-800 px-6 py-4">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-white font-mono font-bold text-lg">skylar gutman</a>
+            <div class="flex gap-6 text-sm text-gray-400">
+                <a href="/" class="hover:text-white transition">Home</a>
+                <a href="/projects/" class="hover:text-white transition">Projects</a>
+                <a href="/about/" class="hover:text-white transition">About</a>
+                <a href="/contact/" class="hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero block (full width) -->
+    {% block hero %}{% endblock %}
+
+    <!-- Content -->
+    <main class="flex-1 max-w-5xl mx-auto w-full px-6 py-12">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-800 px-6 py-6 text-center text-gray-600 text-sm">
+        <p>Skylar Gutman &mdash; Embedded Systems & Robotics Engineer</p>
+    </footer>
+
+</body>
+</html>

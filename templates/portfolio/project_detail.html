@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ project.title }} — Skylar Gutman{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl">
+    <a href="/projects/" class="text-gray-500 text-sm hover:text-white transition mb-6 inline-block">&larr; All Projects</a>
+
+    <h1 class="text-3xl font-bold text-white mb-2">{{ project.title }}</h1>
+
+    {% if project.date_completed %}
+    <p class="text-gray-500 text-sm mb-6">{{ project.date_completed|date:"F Y" }}</p>
+    {% endif %}
+
+    <div class="flex flex-wrap gap-2 mb-8">
+        {% for tech in project.tech_list %}
+        <span class="text-xs bg-gray-800 text-gray-300 px-2 py-1 rounded">{{ tech }}</span>
+        {% endfor %}
+    </div>
+
+    {% if project.thumbnail %}
+    <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" class="w-full rounded-lg mb-8">
+    {% endif %}
+
+    {% if project.video_embed %}
+    <div class="mb-8 aspect-video">
+        {{ project.video_embed|safe }}
+    </div>
+    {% endif %}
+
+    <div class="prose prose-invert text-gray-300 leading-relaxed whitespace-pre-wrap mb-8">
+        {{ project.long_description }}
+    </div>
+
+    {% if project.github_url %}
+    <a href="{{ project.github_url }}" target="_blank" class="inline-block border border-gray-700 text-gray-300 hover:text-white hover:border-gray-500 px-4 py-2 rounded transition text-sm">
+        View on GitHub &rarr;
+    </a>
+    {% endif %}
+</div>
+{% endblock %}
