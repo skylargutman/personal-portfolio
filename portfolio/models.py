@@ -5,7 +5,7 @@ from django.utils.text import slugify
 class Project(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True, blank=True)
-    short_description = models.CharField(max_length=300)
+    short_description = models.CharField(max_length=600)
     long_description = models.TextField()
     tech_stack = models.CharField(max_length=300, help_text="Comma separated, e.g. Python, ROS2, C++")
     thumbnail = models.ImageField(upload_to='thumbnails/', blank=True, null=True)
