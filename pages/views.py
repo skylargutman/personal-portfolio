@@ -6,12 +6,14 @@ def home(request):
     return render(request, 'pages/home.html', {'featured': featured})
 
 def about(request):
-    skills = [
-        'C', 'C++', 'Python', 'ROS2', 'ESP32', 'FreeRTOS',
-        'FPGA', 'Linux', 'Git', 'SolidWorks', 'Raspberry Pi',
-        'Jetson Nano', 'BLE', 'Nginx', 'Django', 'Docker'
-    ]
-    return render(request, 'pages/about.html')
+    from portfolio.models import Project
+    projects = Project.objects.all()
+    skill_set = set()
+    for project in projects:
+        for tech in project.tech_list():
+            skill_set.add(tech.strip())
+    skills = sorted(skill_set)
+    return render(request, 'pages/about.html', {'skills': skills})
 
 def contact(request):
     return render(request, 'pages/contact.html')
