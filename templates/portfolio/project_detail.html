@@ -19,7 +19,20 @@
     </div>
 
     {% if project.thumbnail %}
-    <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" class="w-full rounded-lg mb-8">
+    <img src="{{ project.thumbnail.url }}" alt="{{ project.title }}" class="w-full rounded-lg mb-4">
+    {% endif %}
+
+    {% if project.images.all %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        {% for img in project.images.all %}
+        <div>
+            <img src="{{ img.image.url }}" alt="{{ img.caption }}" class="w-full rounded-lg">
+            {% if img.caption %}
+            <p class="text-gray-500 text-sm mt-1">{{ img.caption }}</p>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
     {% endif %}
 
     {% if project.video_embed %}
