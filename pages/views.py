@@ -1,4 +1,8 @@
-from django.shortcuts import render
+from django.http import Http404
+from django.shortcuts import redirect, render
+
+from .models import Resume
+
 
 def home(request):
     from portfolio.models import Project
@@ -17,3 +21,9 @@ def about(request):
 
 def contact(request):
     return render(request, 'pages/contact.html')
+
+def resume(request):
+    latest = Resume.objects.first()
+    if not latest:
+        raise Http404("No resume uploaded")
+    return redirect(latest.file.url)
